@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steven Hershkowitz - Calorie Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1b4e 50%, #1a1a1a 100%);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hover-glow:hover {
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    footer a:hover {
+      color: #ffd700;
+    }
+    
+    @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .floating {
+        animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+        opacity: 0;
+        animation: fade-in 1s ease-out forwards;
+    }
+    
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 215, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .dot.active {
+        background-color: #ffd700;
+        transform: scale(1.2);
+    }
+    
+    .tabs button {
+      transition: all 0.3s ease;
+    }
+    
+    .tabs button.active {
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+      color: #000;
+      font-weight: bold;
+    }
+    
+    .input-group {
+      transition: all 0.3s ease;
+    }
+    
+    .input-group:focus-within {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .result-card {
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .macro-bar {
+      transition: width 1s ease-in-out;
+    }
+    
+    .progress-ring {
+      transition: stroke-dashoffset 1s ease-in-out;
+    }
+  </style>
+</head>
+<body class="gradient-bg text-white">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+    <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <div class="text-xl sm:text-2xl font-bold gold-gradient">Steven Hershkowitz</div>
+
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="hover:text-yellow-400">Home</a>
+        <a href="index.html#about" class="hover:text-yellow-400">About</a>
+        <a href="index.html#services" class="hover:text-yellow-400">Services</a>
+        <a href="index.html#testimonials" class="hover:text-yellow-400">Testimonials</a>
+        <a href="gallery.html" class="hover:text-yellow-400">Gallery</a>
+        <a href="calculator.html" class="hover:text-yellow-400">Calorie Calculator</a>
+        <a href="index.html#contact" class="hover:text-yellow-400">Contact</a>
+      </div>
+
+      <button class="md:hidden text-white" id="mobile-menu-btn">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-95 backdrop-blur-md" id="mobile-menu">
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <button class="absolute top-6 right-6 text-white" id="mobile-menu-close">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+        <a href="index.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Home</a>
+        <a href="index.html#about" class="text-2xl hover:text-yellow-400 mobile-menu-link">About</a>
+        <a href="index.html#services" class="text-2xl hover:text-yellow-400 mobile-menu-link">Services</a>
+        <a href="index.html#testimonials" class="text-2xl hover:text-yellow-400 mobile-menu-link">Testimonials</a>
+        <a href="gallery.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Gallery</a>
+        <a href="calculator.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Calorie Calculator</a>
+        <a href="index.html#contact" class="text-2xl hover:text-yellow-400 mobile-menu-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Calculator Hero Section -->
+  <section class="min-h-[50vh] flex items-center justify-center relative overflow-hidden pt-20">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+           alt="Fitness tracking" 
+           class="w-full h-full object-cover">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black"></div>
+    
+    <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="slide-in">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-4 leading-tight">
+          Fitness <span class="gold-gradient">Calorie Calculator</span>
+        </h1>
+      </div>
+      
+      <div class="fade-in" style="animation-delay: 0.3s;">
+        <p class="text-lg sm:text-xl mb-6 max-w-3xl mx-auto leading-relaxed">
+          Calculate your daily calorie needs and macronutrient targets based on your goals
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section id="calculator" class="py-16 sm:py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+      <div class="bg-gray-800 bg-opacity-50 rounded-2xl p-6 sm:p-8 hover-glow">
+        <div class="text-center mb-8 fade-in">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3">
+            <span class="gold-gradient">Personalized Calorie Calculation</span>
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            Enter your details to get your personalized daily calorie intake and macronutrient breakdown
+          </p>
+        </div>
+        
+        <!-- Unit Selection Tabs -->
+        <div class="tabs flex justify-center mb-6 fade-in" style="animation-delay: 0.2s;">
+          <button id="metricBtn" class="px-4 py-2 rounded-l-full bg-gray-700 active">Metric (kg/cm)</button>
+          <button id="imperialBtn" class="px-4 py-2 rounded-r-full bg-gray-700">Imperial (lbs/in)</button>
+        </div>
+        
+        <form id="calorieForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Left Column -->
+          <div>
+            <!-- Gender -->
+            <div class="mb-6 fade-in" style="animation-delay: 0.3s;">
+              <label class="block text-gray-300 mb-2">Gender</label>
+              <div class="flex space-x-4">
+                <div class="flex items-center">
+                  <input type="radio" id="male" name="gender" value="male" checked class="mr-2 accent-yellow-500">
+                  <label for="male">Male</label>
+                </div>
+                <div class="flex items-center">
+                  <input type="radio" id="female" name="gender" value="female" class="mr-2 accent-yellow-500">
+                  <label for="female">Female</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Age -->
+            <div class="mb-6 fade-in" style="animation-delay: 0.4s;">
+              <label class="block text-gray-300 mb-2">Age (years)</label>
+              <div class="input-group relative flex items-center bg-gray-700 rounded-lg overflow-hidden">
+                <input type="number" id="age" min="15" max="100" value="30" class="w-full py-3 px-4 bg-transparent focus:outline-none">
+                <div class="absolute right-3 text-gray-400">yrs</div>
+              </div>
+            </div>
+            
+            <!-- Weight -->
+            <div class="mb-6 fade-in" style="animation-delay: 0.5s;">
+              <label class="block text-gray-300 mb-2">Weight</label>
+              <div class="input-group relative flex items-center bg-gray-700 rounded-lg overflow-hidden">
+                <input type="number" id="weight" min="30" max="200" value="70" class="w-full py-3 px-4 bg-transparent focus:outline-none">
+                <div id="weightUnit" class="absolute right-3 text-gray-400">kg</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Column -->
+          <div>
+            <!-- Height -->
+            <div class="mb-6 fade-in" style="animation-delay: 0.6s;">
+              <label class="block text-gray-300 mb-2">Height</label>
+              <div class="input-group relative flex items-center bg-gray-700 rounded-lg overflow-hidden">
+                <input type="number" id="height" min="100" max="250" value="175" class="w-full py-3 px-4 bg-transparent focus:outline-none">
+                <div id="heightUnit" class="absolute right-3 text-gray-400">cm</div>
+              </div>
+            </div>
+            
+            <!-- Activity Level -->
+            <div class="mb-6 fade-in" style="animation-delay: 0.7s;">
+              <label class="block text-gray-300 mb-2">Activity Level</label>
+              <select id="activity" class="w-full py-3 px-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <option value="1.2">Sedentary (little or no exercise)</option>
+                <option value="1.375">Lightly Active (light exercise 1-3 days/week)</option>
+                <option value="1.55" selected>Moderately Active (moderate exercise 3-5 days/week)</option>
+                <option value="1.725">Very Active (hard exercise 6-7 days/week)</option>
+                <option value="1.9">Extra Active (very hard exercise & physical job)</option>
+              </select>
+            </div>
+            
+            <!-- Goal -->
+            <div class="mb-6 fade-in" style="animation-delay: 0.8s;">
+              <label class="block text-gray-300 mb-2">Goal</label>
+              <select id="goal" class="w-full py-3 px-4 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <option value="lose">Lose Weight</option>
+                <option value="maintain" selected>Maintain Weight</option>
+                <option value="gain">Gain Weight</option>
+              </select>
+            </div>
+          </div>
+          
+          <!-- Calculate Button -->
+          <div class="md:col-span-2 text-center fade-in" style="animation-delay: 1s;">
+            <button type="button" id="calculateBtn" class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-3 rounded-full text-lg font-bold hover-glow transform transition-all duration-300 w-full sm:w-auto">
+              Calculate My Calories
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Results Section -->
+      <div id="results" class="mt-12 hidden">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl sm:text-3xl font-bold mb-3">
+            Your <span class="gold-gradient">Personalized Results</span>
+          </h2>
+          <p class="text-gray-300 max-w-2xl mx-auto">
+            Based on your inputs, here are your daily calorie and macronutrient targets
+          </p>
+        </div>
+        
+        <div class="result-card grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <!-- Total Calories -->
+          <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl hover-glow">
+            <div class="text-center mb-4">
+              <div class="text-3xl mb-2">
+                <i class="fas fa-fire-alt text-yellow-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Daily Calories</h3>
+              <div class="text-4xl font-bold gold-gradient mb-2" id="caloriesResult">0</div>
+              <p class="text-sm text-gray-400">calories per day</p>
+            </div>
+          </div>
+          
+          <!-- Protein -->
+          <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl hover-glow">
+            <div class="text-center mb-4">
+              <div class="text-3xl mb-2">
+                <i class="fas fa-drumstick-bite text-yellow-400"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2">Protein</h3>
+              <div class="text-4xl font-bold gold-gradient mb-2" id="proteinResult">0g</div>
+              <p class="text-sm text-gray-400" id="proteinPercent">30% of calories</p>
+            </div>
+          </div>
+          
+          <!-- Carbs & Fat -->
+          <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl hover-glow">
+            <div class="flex justify-between">
+              <div class="text-center">
+                <div class="text-3xl mb-2">
+                  <i class="fas fa-bread-slice text-yellow-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Carbs</h3>
+                <div class="text-2xl font-bold" id="carbsResult">0g</div>
+                <p class="text-sm text-gray-400" id="carbsPercent">40%</p>
+              </div>
+              
+              <div class="text-center">
+                <div class="text-3xl mb-2">
+                  <i class="fas fa-bacon text-yellow-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Fat</h3>
+                <div class="text-2xl font-bold" id="fatResult">0g</div>
+                <p class="text-sm text-gray-400" id="fatPercent">30%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Macronutrient Visualization -->
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl hover-glow mb-10">
+          <h3 class="text-lg font-semibold mb-4 text-center">Macronutrient Distribution</h3>
+          <div class="flex h-6 rounded-full overflow-hidden mb-4">
+            <div id="proteinBar" class="macro-bar bg-blue-500" style="width: 30%">Protein</div>
+            <div id="carbsBar" class="macro-bar bg-green-500" style="width: 40%">Carbs</div>
+            <div id="fatBar" class="macro-bar bg-yellow-500" style="width: 30%">Fat</div>
+          </div>
+          
+          <div class="flex justify-between text-xs text-gray-400">
+            <div>Protein</div>
+            <div>Carbohydrates</div>
+            <div>Fats</div>
+          </div>
+        </div>
+        
+        <!-- Recommendations -->
+        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-2xl hover-glow">
+          <h3 class="text-lg font-semibold mb-4 text-center gold-gradient">Nutrition Recommendations</h3>
+          <div class="space-y-4">
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-yellow-400 mt-1 mr-3"></i>
+              <p class="text-gray-300">Focus on lean protein sources like chicken, fish, eggs, and legumes</p>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-yellow-400 mt-1 mr-3"></i>
+              <p class="text-gray-300">Choose complex carbohydrates such as whole grains, oats, and sweet potatoes</p>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-yellow-400 mt-1 mr-3"></i>
+              <p class="text-gray-300">Include healthy fats from avocados, nuts, seeds, and olive oil</p>
+            </div>
+            <div class="flex items-start">
+              <i class="fas fa-check-circle text-yellow-400 mt-1 mr-3"></i>
+              <p class="text-gray-300">Stay hydrated with at least 2-3 liters of water daily</p>
+            </div>
+            <div class="text-center mt-6">
+              <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-2 rounded-full font-bold hover-glow transform transition-all duration-300">
+             <a href="https://www.facebook.com/steven.hershkowitz.942">  Get Personalized Meal Plan </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black py-12 sm:py-16">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+        <!-- About -->
+        <div>
+          <div class="text-xl font-bold gold-gradient mb-2">Steven Hershkowitz</div>
+          <p class="text-gray-400 text-sm">Transform Your Body, Transform Your Life.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-yellow-400">Quick Links</h4>
+          <ul class="text-gray-400 space-y-1 text-sm">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="calculator.html">Calorie Calculator</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-yellow-400">Follow Me</h4>
+          <div class="flex justify-center md:justify-start space-x-4">
+            <a href="https://www.facebook.com/steven.hershkowitz.942" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/steve_middlekingdomfitness?igsh=ZWpqNTIyYTRqdTB1" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+        &copy; 2025 Steven Hershkowitz. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    window.addEventListener('scroll', function () {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('bg-black', 'bg-opacity-90');
+      } else {
+        nav.classList.remove('bg-black', 'bg-opacity-90');
+      }
+    });
+
+    // Calorie Calculator Functionality
+    const metricBtn = document.getElementById('metricBtn');
+    const imperialBtn = document.getElementById('imperialBtn');
+    const weightUnit = document.getElementById('weightUnit');
+    const heightUnit = document.getElementById('heightUnit');
+    const weightInput = document.getElementById('weight');
+    const heightInput = document.getElementById('height');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const resultsSection = document.getElementById('results');
+    
+    // Unit toggle
+    metricBtn.addEventListener('click', () => {
+      metricBtn.classList.add('active');
+      imperialBtn.classList.remove('active');
+      weightUnit.textContent = 'kg';
+      heightUnit.textContent = 'cm';
+      
+      // Convert values if needed
+      if (weightInput.dataset.unit === 'lbs') {
+        weightInput.value = Math.round(weightInput.value / 2.205);
+        heightInput.value = Math.round(heightInput.value * 2.54);
+        weightInput.dataset.unit = 'kg';
+        heightInput.dataset.unit = 'cm';
+      }
+    });
+    
+    imperialBtn.addEventListener('click', () => {
+      imperialBtn.classList.add('active');
+      metricBtn.classList.remove('active');
+      weightUnit.textContent = 'lbs';
+      heightUnit.textContent = 'in';
+      
+      // Convert values if needed
+      if (weightInput.dataset.unit !== 'lbs') {
+        weightInput.value = Math.round(weightInput.value * 2.205);
+        heightInput.value = Math.round(heightInput.value / 2.54);
+        weightInput.dataset.unit = 'lbs';
+        heightInput.dataset.unit = 'in';
+      }
+    });
+    
+    // Initialize
+    weightInput.dataset.unit = 'kg';
+    heightInput.dataset.unit = 'cm';
+    
+    // Calculate calories
+    calculateBtn.addEventListener('click', () => {
+      // Get form values
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const age = parseInt(document.getElementById('age').value);
+      let weight = parseFloat(weightInput.value);
+      let height = parseFloat(heightInput.value);
+      const activity = parseFloat(document.getElementById('activity').value);
+      const goal = document.getElementById('goal').value;
+      
+      // Convert to metric if in imperial
+      if (weightInput.dataset.unit === 'lbs') {
+        weight = weight / 2.205; // Convert lbs to kg
+        height = height * 2.54; // Convert inches to cm
+      }
+      
+      // Calculate BMR (Mifflin-St Jeor Equation)
+      let bmr;
+      if (gender === 'male') {
+        bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      } else {
+        bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      }
+      
+      // Calculate TDEE (Total Daily Energy Expenditure)
+      let tdee = bmr * activity;
+      
+      // Adjust for goal
+      if (goal === 'lose') {
+        tdee -= 500; // Deficit for weight loss
+      } else if (goal === 'gain') {
+        tdee += 500; // Surplus for weight gain
+      }
+      
+      // Round to nearest 50
+      tdee = Math.round(tdee / 50) * 50;
+      
+      // Calculate macronutrients based on goal
+      let proteinPct, carbsPct, fatPct;
+      
+      if (goal === 'lose') {
+        proteinPct = 0.40; // 40%
+        carbsPct = 0.30;   // 30%
+        fatPct = 0.30;     // 30%
+      } else if (goal === 'gain') {
+        proteinPct = 0.30; // 30%
+        carbsPct = 0.50;   // 50%
+        fatPct = 0.20;     // 20%
+      } else { // maintain
+        proteinPct = 0.30; // 30%
+        carbsPct = 0.40;   // 40%
+        fatPct = 0.30;     // 30%
+      }
+      
+      // Calculate grams
+      const proteinGrams = Math.round((tdee * proteinPct) / 4);
+      const carbsGrams = Math.round((tdee * carbsPct) / 4);
+      const fatGrams = Math.round((tdee * fatPct) / 9);
+      
+      // Update UI with results
+      document.getElementById('caloriesResult').textContent = tdee.toLocaleString();
+      document.getElementById('proteinResult').textContent = proteinGrams + 'g';
+      document.getElementById('carbsResult').textContent = carbsGrams + 'g';
+      document.getElementById('fatResult').textContent = fatGrams + 'g';
+      document.getElementById('proteinPercent').textContent = Math.round(proteinPct * 100) + '% of calories';
+      document.getElementById('carbsPercent').textContent = Math.round(carbsPct * 100) + '%';
+      document.getElementById('fatPercent').textContent = Math.round(fatPct * 100) + '%';
+      
+      // Update macro bars
+      document.getElementById('proteinBar').style.width = (proteinPct * 100) + '%';
+      document.getElementById('carbsBar').style.width = (carbsPct * 100) + '%';
+      document.getElementById('fatBar').style.width = (fatPct * 100) + '%';
+      
+      // Show results
+      resultsSection.classList.remove('hidden');
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Animate results
+      const resultCards = document.querySelectorAll('.result-card > div');
+      resultCards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('animate__animated', 'animate__fadeInUp');
+        }, 100 * index);
+      });
+    });
+    
+    // Fade in animations on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      fadeElements.forEach(el => {
+        el.style.opacity = 1;
+      });
+    });
+  </script>
+</body>
+</html>

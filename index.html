@@ -1,0 +1,842 @@
+<!-- Yeh updated index.html hai -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steven Hershkowitz - Personal Trainer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1b4e 50%, #1a1a1a 100%);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hover-glow:hover {
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    footer a:hover {
+      color: #ffd700;
+    }
+    @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .floating {
+        animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+        opacity: 0;
+        animation: fade-in 1s ease-out forwards;
+    }
+    
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba(255, 215, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .dot.active {
+        background-color: #ffd700;
+        transform: scale(1.2);
+    }
+  </style>
+</head>
+<body class="gradient-bg text-white">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+    <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <div class="text-xl sm:text-2xl font-bold gold-gradient">Steven Hershkowitz</div>
+
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="hover:text-yellow-400">Home</a>
+        <a href="#about" class="hover:text-yellow-400">About</a>
+        <a href="#services" class="hover:text-yellow-400">Services</a>
+        <a href="#testimonials" class="hover:text-yellow-400">Testimonials</a>
+        <a href="gallery.html" class="hover:text-yellow-400">Gallery</a>
+        <a href="calculator.html" class="hover:text-yellow-400">Calorie Calculator</a>
+        <a href="#contact" class="hover:text-yellow-400">Contact</a>
+      </div>
+
+      <button class="md:hidden text-white" id="mobile-menu-btn">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-95 backdrop-blur-md" id="mobile-menu">
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <button class="absolute top-6 right-6 text-white" id="mobile-menu-close">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+        <a href="#home" class="text-2xl hover:text-yellow-400 mobile-menu-link">Home</a>
+        <a href="#about" class="text-2xl hover:text-yellow-400 mobile-menu-link">About</a>
+        <a href="#services" class="text-2xl hover:text-yellow-400 mobile-menu-link">Services</a>
+        <a href="#testimonials" class="text-2xl hover:text-yellow-400 mobile-menu-link">Testimonials</a>
+        <a href="gallery.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Gallery</a>
+        <a href="calculator.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Calorie Calculator</a>
+        <a href="#contact" class="text-2xl hover:text-yellow-400 mobile-menu-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Modern gym equipment" 
+                 class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-black opacity-80"></div>
+        
+        <!-- Background Animation Elements -->
+        <div class="absolute top-20 left-4 sm:left-10 w-16 h-16 sm:w-20 sm:h-20 bg-yellow-400 rounded-full opacity-10 floating"></div>
+        <div class="absolute bottom-20 right-4 sm:right-10 w-20 h-20 sm:w-32 sm:h-32 bg-yellow-400 rounded-full opacity-10 floating" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 left-1/6 sm:left-1/4 w-12 h-12 sm:w-16 sm:h-16 bg-yellow-400 rounded-full opacity-10 floating" style="animation-delay: 2s;"></div>
+        
+        <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+            <div class="slide-in">
+                <h1 class="text-4xl sm:text-6xl md:text-8xl font-black mb-6 leading-tight">
+                    ACHIEVE YOUR
+                    <span class="gold-gradient block">FITNESS GOALS</span>
+                </h1>
+            </div>
+            
+            <div class="fade-in" style="animation-delay: 0.5s;">
+                <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-4xl mx-auto leading-relaxed px-2">
+                    Transform your body and mind with 30+ years of expert guidance in free weights, resistance bands, and bodyweight training
+                </p>
+            </div>
+            
+            <div class="fade-in flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-2" style="animation-delay: 1s;">
+                <div class="flex items-center bg-green-600 bg-opacity-20 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base">
+                    <i class="fas fa-dumbbell text-yellow-400 mr-2 sm:mr-3"></i>
+                    <span>Muscle Gain</span>
+                </div>
+                <div class="flex items-center bg-red-600 bg-opacity-20 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base">
+                    <i class="fas fa-fire text-yellow-400 mr-2 sm:mr-3"></i>
+                    <span>Weight Loss</span>
+                </div>
+                <div class="flex items-center bg-blue-600 bg-opacity-20 px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base">
+                    <i class="fas fa-heart text-yellow-400 mr-2 sm:mr-3"></i>
+                    <span>Resistance Training</span>
+                </div>
+            </div>
+            
+            <div class="fade-in px-4" style="animation-delay: 1.5s;">
+                <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-bold hover-glow pulse-glow transform transition-all duration-300 w-full sm:w-auto">
+                 <a href="https://www.facebook.com/steven.hershkowitz.942">   START YOUR TRANSFORMATION </a>
+                </button>
+                <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-bold hover-glow pulse-glow transform transition-all duration-300 w-full sm:w-auto">
+                 <a href="https://www.amazon.com/dp/B0BT71WT87/ref=mp_s_a_1_4?crid=3JF83EN7E8KZ2&keywords=steven+Hershkowitz&qid=1675060118&s=books&sprefix=steven+hershkowitz%2Caps%2C397&sr=1-4">   ORDER FITNESS BOOK NOW </a>
+                </button>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="fade-in order-2 lg:order-1">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
+                        Meet Your <span class="gold-gradient">Expert Trainer</span>
+                    </h2>
+                    <p class="text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
+                        Good day to all! I am Steven Hershkowitz, an online trainer with over 30 years of experience in the fitness industry. I specialize in free weights, resistance bands, and bodyweight training methods that deliver real results.
+                    </p>
+                    <p class="text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
+                        Whether you're looking to lose fat, build muscle, or simply get back in shape, I'm here to guide you every step of the way. My proven methods have helped countless clients achieve their fitness dreams.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        <div class="text-center p-4 sm:p-6 bg-gray-800 bg-opacity-50 rounded-lg hover-glow">
+                            <div class="text-2xl sm:text-3xl font-bold gold-gradient">30+</div>
+                            <div class="text-gray-300 text-sm sm:text-base">Years Experience</div>
+                        </div>
+                        <div class="text-center p-4 sm:p-6 bg-gray-800 bg-opacity-50 rounded-lg hover-glow">
+                            <div class="text-2xl sm:text-3xl font-bold gold-gradient">400+</div>
+                            <div class="text-gray-300 text-sm sm:text-base">Happy Clients</div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm sm:text-base text-gray-300 mb-6">
+                        <i class="fas fa-star text-yellow-400 mr-2"></i>
+                        Client referrals available upon request
+                    </div>
+                </div>
+                
+                <div class="fade-in order-1 lg:order-2" style="animation-delay: 0.5s;">
+                    <!-- Client Image Placeholder -->
+                    <div class="relative mb-6 sm:mb-8">
+                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-2xl transform rotate-3 opacity-20"></div>
+                        <div class="relative overflow-hidden rounded-2xl hover-glow">
+                            <img src="steven2.jpg" 
+                                 alt="Steven Hershkowitz - Personal Trainer" 
+                                 class="w-full h-full sm:h-full lg:h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="text-lg sm:text-xl font-bold gold-gradient">Steven Hershkowitz</div>
+                                <div class="text-xs sm:text-sm text-gray-300">30+ Years Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 sm:py-20 gradient-bg">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+                    My <span class="gold-gradient">Training Services</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+                    Comprehensive fitness solutions tailored to your goals and lifestyle
+                </p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="bg-gray-800 bg-opacity-50 p-6 sm:p-8 rounded-2xl hover-glow fade-in">
+                    <div class="text-3xl sm:text-4xl mb-4 sm:mb-6 text-center">
+                        <i class="fas fa-dumbbell text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-center gold-gradient">Free Weights Training</h3>
+                    <p class="text-gray-300 mb-4 sm:mb-6 text-center text-sm sm:text-base">
+                        Build serious muscle and strength with proven free weight techniques and progressive overload methods.
+                    </p>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Compound movements focus</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Progressive overload programming</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Proper form instruction</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Injury prevention techniques</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-50 p-6 sm:p-8 rounded-2xl hover-glow fade-in" style="animation-delay: 0.2s;">
+                    <div class="text-3xl sm:text-4xl mb-4 sm:mb-6 text-center">
+                        <i class="fas fa-band-aid text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-center gold-gradient">Resistance Bands</h3>
+                    <p class="text-gray-300 mb-4 sm:mb-6 text-center text-sm sm:text-base">
+                        Versatile, joint-friendly training perfect for home workouts and travel fitness routines.
+                    </p>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Portable workout solutions</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Variable resistance training</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Joint-friendly exercises</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Full-body conditioning</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-50 p-6 sm:p-8 rounded-2xl hover-glow fade-in sm:col-span-2 lg:col-span-1" style="animation-delay: 0.4s;">
+                    <div class="text-3xl sm:text-4xl mb-4 sm:mb-6 text-center">
+                        <i class="fas fa-running text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-center gold-gradient">Bodyweight Training</h3>
+                    <p class="text-gray-300 mb-4 sm:mb-6 text-center text-sm sm:text-base">
+                        Master your own bodyweight with calisthenics and functional movement patterns.
+                    </p>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>No equipment required</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Functional movement patterns</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Core strength development</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Flexibility & mobility</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 sm:mt-16 fade-in px-4" style="animation-delay: 0.6s;">
+                <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover-glow transform transition-all duration-300 w-full sm:w-auto">
+                 <a href="https://www.facebook.com/steven.hershkowitz.942">  Get Your Custom Program </a>
+                </button>
+                <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-bold hover-glow transform transition-all duration-300 w-full sm:w-auto">
+                 <a href="https://www.udemy.com/course/resistance-bands-fitness-training-introduction-to-mastery/?fbclid=IwAR1XIGOoq9FxnG1QLzpnGrffUi1zG-wLQNvRs1flWGNHMT64Z2HsmjoU6fo&couponCode=MAR2024">  WANT TO LEARN NOW? </a>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-16 sm:py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
+    <!-- Background Animation Elements -->
+    <div class="absolute top-10 right-10 w-20 h-20 bg-yellow-400 rounded-full opacity-5 floating"></div>
+    <div class="absolute bottom-20 left-10 w-16 h-16 bg-yellow-400 rounded-full opacity-5 floating" style="animation-delay: 1s;"></div>
+    
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12 sm:mb-16 fade-in">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+                What My <span class="gold-gradient">Clients Say</span>
+            </h2>
+            <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+                Real transformations, real people, real results
+            </p>
+        </div>
+
+        <!-- Testimonials Carousel -->
+        <div class="relative">
+            <div class="testimonials-container overflow-hidden">
+                <div class="testimonials-track flex transition-transform duration-500 ease-in-out" id="testimonials-track">
+                    
+                    <!-- Testimonial 1 - Nic (UK) -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl">
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-black">
+                                        N
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "Steve designed a workout plan tailored to my needs and limitations, reigniting my motivation and improving my strength, flexibility, and energy."
+                                    </p>
+                                    <div class="text-yellow-400 font-bold text-base sm:text-lg">Nic</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">United Kingdom</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 - Christopher P. (Philippines) -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl">
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-black">
+                                        C
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "Steve's dietary plan helped bring my sugar and cholesterol levels back to safe levels — even with limited adherence due to travel."
+                                    </p>
+                                    <div class="text-yellow-400 font-bold text-base sm:text-lg">Christopher P.</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">Philippines</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 - Scott (Australia) -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl">
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-black">
+                                        S
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "Steve's never-give-up attitude is inspiring. His office-style workouts are effective, easy to follow, and brilliantly delivered."
+                                    </p>
+                                    <div class="text-yellow-400 font-bold text-base sm:text-lg">Scott</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">Australia, Owner 99C.Fit</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 - Lisinka K. (South Africa) -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl">
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-black">
+                                        L
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "A two-year transformation — Steve helped me unlock my strength as a rugby player and cyclist, boosting both body and confidence."
+                                    </p>
+                                    <div class="text-yellow-400 font-bold text-base sm:text-lg">Lisinka K.</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">South Africa</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 - Sue B. (China) -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl">
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-black">
+                                        S
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "Steve helped me lose 11kg while restoring my confidence. His encouragement, understanding, and positive energy changed my life."
+                                    </p>
+                                    <div class="text-yellow-400 font-bold text-base sm:text-lg">Sue B.</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">China</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6 - Carl A. (UK) -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl">
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-black">
+                                        C
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                        <i class="fas fa-star text-yellow-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "Steve provides the accountability and guidance needed to stay on track with fitness goals. He's the key to long-term success."
+                                    </p>
+                                    <div class="text-yellow-400 font-bold text-base sm:text-lg">Carl A.</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">United Kingdom</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teaching Testimonial 7 - Drea L. -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-purple-800 to-purple-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl border border-purple-500 border-opacity-30">
+                            <div class="text-center mb-4">
+                                <div class="inline-flex items-center bg-purple-600 bg-opacity-30 px-4 py-2 rounded-full text-sm font-medium">
+                                    <i class="fas fa-graduation-cap mr-2"></i>
+                                    Teaching Career
+                                </div>
+                            </div>
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-white">
+                                        D
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "Mr. Hershkowitz was the coolest teacher — he inspired me to become one myself. Thank you for leaving a lifelong impact."
+                                    </p>
+                                    <div class="text-purple-400 font-bold text-base sm:text-lg">Drea L.</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">Former Student</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teaching Testimonial 8 - Maria -->
+                    <div class="testimonial-slide min-w-full px-4">
+                        <div class="bg-gradient-to-br from-purple-800 to-purple-900 p-6 sm:p-8 rounded-2xl hover-glow mx-auto max-w-4xl border border-purple-500 border-opacity-30">
+                            <div class="text-center mb-4">
+                                <div class="inline-flex items-center bg-purple-600 bg-opacity-30 px-4 py-2 rounded-full text-sm font-medium">
+                                    <i class="fas fa-graduation-cap mr-2"></i>
+                                    Teaching Career
+                                </div>
+                            </div>
+                            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                                <div class="flex-shrink-0">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-2xl sm:text-3xl font-bold text-white">
+                                        M
+                                    </div>
+                                </div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <div class="flex justify-center md:justify-start mb-3 sm:mb-4">
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                        <i class="fas fa-star text-purple-400"></i>
+                                    </div>
+                                    <p class="text-lg sm:text-xl text-gray-200 mb-4 sm:mb-6 italic">
+                                        "You helped me find and use my voice back in 1995. I'll always remember your encouragement and presence in class."
+                                    </p>
+                                    <div class="text-purple-400 font-bold text-base sm:text-lg">Maria</div>
+                                    <div class="text-gray-400 text-sm sm:text-base">Former Student (1995)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg transition-all duration-300 z-10" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-yellow-400 hover:bg-yellow-500 text-black p-3 rounded-full shadow-lg transition-all duration-300 z-10" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- Dots Indicator -->
+            <div class="flex justify-center mt-8 space-x-2" id="dots-container">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-12 sm:mt-16">
+            <div class="text-center p-4 sm:p-6 bg-gray-800 bg-opacity-50 rounded-lg hover-glow">
+                <div class="text-2xl sm:text-3xl font-bold gold-gradient mb-2">8</div>
+                <div class="text-gray-300 text-xs sm:text-sm">Countries Reached</div>
+            </div>
+            <div class="text-center p-4 sm:p-6 bg-gray-800 bg-opacity-50 rounded-lg hover-glow">
+                <div class="text-2xl sm:text-3xl font-bold gold-gradient mb-2">100%</div>
+                <div class="text-gray-300 text-xs sm:text-sm">Success Rate</div>
+            </div>
+            <div class="text-center p-4 sm:p-6 bg-gray-800 bg-opacity-50 rounded-lg hover-glow">
+                <div class="text-2xl sm:text-3xl font-bold gold-gradient mb-2">400+</div>
+                <div class="text-gray-300 text-xs sm:text-sm">Lives Changed</div>
+            </div>
+            <div class="text-center p-4 sm:p-6 bg-gray-800 bg-opacity-50 rounded-lg hover-glow col-span-2 lg:col-span-1">
+                <div class="text-2xl sm:text-3xl font-bold gold-gradient mb-2">30+</div>
+                <div class="text-gray-300 text-xs sm:text-sm">Years Experience</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 sm:py-20 bg-gradient-to-b from-black to-gray-900">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+                    Ready to <span class="gold-gradient">Transform?</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+                    Don't hesitate to reach out via DM. Your fitness journey starts with a single message.
+                </p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="fade-in">
+                    <div class="bg-gray-800 bg-opacity-50 p-6 sm:p-8 rounded-2xl hover-glow">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 gold-gradient">Connect With Me</h3>
+                        <div class="space-y-4 sm:space-y-6">
+                            <a href="https://www.facebook.com/steven.hershkowitz.942" class="flex items-center p-3 sm:p-4 bg-blue-600 bg-opacity-20 rounded-lg hover:bg-opacity-40 transition-all">
+                                <i class="fab fa-facebook-f text-blue-400 text-xl sm:text-2xl mr-3 sm:mr-4"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">Facebook</div>
+                                    <div class="text-xs sm:text-sm text-gray-400">steven.hershkowitz.942</div>
+                                </div>
+                            </a>
+                            
+                            <a href="https://www.instagram.com/steve_middlekingdomfitness?igsh=ZWpqNTIyYTRqdTB1" class="flex items-center p-3 sm:p-4 bg-purple-600 bg-opacity-20 rounded-lg hover:bg-opacity-40 transition-all">
+                                <i class="fab fa-instagram text-purple-400 text-xl sm:text-2xl mr-3 sm:mr-4"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">Instagram</div>
+                                    <div class="text-xs sm:text-sm text-gray-400">Steve_MiddleKingdomFitness</div>
+                                </div>
+                            </a>
+                            
+                            <a href="#" class="flex items-center p-3 sm:p-4 bg-blue-400 bg-opacity-20 rounded-lg hover:bg-opacity-40 transition-all">
+                                <i class="fab fa-twitter text-blue-300 text-xl sm:text-2xl mr-3 sm:mr-4"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">Twitter</div>
+                                    <div class="text-xs sm:text-sm text-gray-400">steve_mkf</div>
+                                </div>
+                            </a>
+                            
+                            <a href="#" class="flex items-center p-3 sm:p-4 bg-red-600 bg-opacity-20 rounded-lg hover:bg-opacity-40 transition-all">
+                                <i class="fab fa-youtube text-red-400 text-xl sm:text-2xl mr-3 sm:mr-4"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">YouTube</div>
+                                    <div class="text-xs sm:text-sm text-gray-400">StevenHershkowitz</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fade-in" style="animation-delay: 0.3s;">
+                    <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 p-6 sm:p-8 rounded-2xl text-black">
+                        <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Why Choose Me?</h3>
+                        <div class="space-y-3 sm:space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-medal text-black mr-3 sm:mr-4 mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">30+ Years Experience</div>
+                                    <div class="text-xs sm:text-sm opacity-80">Proven track record in fitness coaching</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-users text-black mr-3 sm:mr-4 mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">Client References Available</div>
+                                    <div class="text-xs sm:text-sm opacity-80">Real testimonials from satisfied clients</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-laptop text-black mr-3 sm:mr-4 mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">Online Training</div>
+                                    <div class="text-xs sm:text-sm opacity-80">Train from anywhere, anytime</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-heart text-black mr-3 sm:mr-4 mt-1"></i>
+                                <div>
+                                    <div class="font-semibold text-sm sm:text-base">Personalized Approach</div>
+                                    <div class="text-xs sm:text-sm opacity-80">Every program tailored to your needs</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 sm:mt-8 text-center">
+                            <button class="bg-black text-yellow-400 px-6 sm:px-8 py-2 sm:py-3 rounded-full font-bold hover:bg-gray-800 transition-colors w-full sm:w-auto text-sm sm:text-base">
+                              <a href="https://www.facebook.com/steven.hershkowitz.942"> Contact Me! </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ <!-- Footer -->
+  <footer class="bg-black py-12 sm:py-16 ">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+        <!-- About -->
+        <div>
+          <div class="text-xl font-bold gold-gradient mb-2">Steven Hershkowitz</div>
+          <p class="text-gray-400 text-sm">Transform Your Body, Transform Your Life.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-yellow-400">Quick Links</h4>
+          <ul class="text-gray-400 space-y-1 text-sm">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="calculator.html">Calorie Calculator</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-yellow-400">Follow Me</h4>
+          <div class="flex justify-center md:justify-start space-x-4">
+            <a href="https://www.facebook.com/steven.hershkowitz.942" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/steve_middlekingdomfitness?igsh=ZWpqNTIyYTRqdTB1" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+        &copy; 2025 Steven Hershkowitz. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    window.addEventListener('scroll', function () {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('bg-black', 'bg-opacity-90');
+      } else {
+        nav.classList.remove('bg-black', 'bg-opacity-90');
+      }
+    });
+  </script>
+  <script>
+ document.addEventListener('DOMContentLoaded', function() {
+        const track = document.getElementById('testimonials-track');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('dots-container');
+        
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+        
+        // Create dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+        
+        const dots = document.querySelectorAll('.dot');
+        
+        function updateSlide() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateSlide();
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlide();
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlide();
+        }
+        
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Auto-play carousel
+        setInterval(nextSlide, 5000);
+        
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+        
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        track.addEventListener('touchmove', (e) => {
+            endX = e.touches[0].clientX;
+        });
+        
+        track.addEventListener('touchend', () => {
+            const threshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        });
+    });
+
+  </script>
+</body>
+</html>
