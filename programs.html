@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Training Programs - Steven Hershkowitz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d1b4e 50%, #1a1a1a 100%);
+    }
+
+    .gold-gradient {
+      background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hover-glow:hover {
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    footer a:hover {
+      color: #ffd700;
+    }
+    @keyframes floating {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .floating {
+        animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+        opacity: 0;
+        animation: fade-in 1s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="gradient-bg text-white">
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-black bg-opacity-50 backdrop-blur-md">
+    <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+      <div class="text-xl sm:text-2xl font-bold gold-gradient">Steven Hershkowitz</div>
+
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="hover:text-yellow-400">Home</a>
+        <a href="index.html#about" class="hover:text-yellow-400">About</a>
+        <a href="index.html#services" class="hover:text-yellow-400">Services</a>
+        <a href="index.html#testimonials" class="hover:text-yellow-400">Testimonials</a>
+        <a href="gallery.html" class="hover:text-yellow-400">Gallery</a>
+        <a href="programs.html" class="hover:text-yellow-400">Programs</a>
+        <a href="calculator.html" class="hover:text-yellow-400">Calorie Calculator</a>
+        <a href="index.html#contact" class="hover:text-yellow-400">Contact</a>
+      </div>
+
+      <button class="md:hidden text-white" id="mobile-menu-btn">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu md:hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-95 backdrop-blur-md" id="mobile-menu">
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <button class="absolute top-6 right-6 text-white" id="mobile-menu-close">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+        <a href="index.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Home</a>
+        <a href="index.html#about" class="text-2xl hover:text-yellow-400 mobile-menu-link">About</a>
+        <a href="index.html#services" class="text-2xl hover:text-yellow-400 mobile-menu-link">Services</a>
+        <a href="index.html#testimonials" class="text-2xl hover:text-yellow-400 mobile-menu-link">Testimonials</a>
+        <a href="gallery.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Gallery</a>
+        <a href="programs.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Programs</a>
+        <a href="calculator.html" class="text-2xl hover:text-yellow-400 mobile-menu-link">Calorie Calculator</a>
+        <a href="index.html#contact" class="text-2xl hover:text-yellow-400 mobile-menu-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 gradient-bg relative overflow-hidden">
+    <!-- Background Animation Elements -->
+    <div class="absolute top-20 left-10 w-16 h-16 bg-yellow-400 rounded-full opacity-10 floating"></div>
+    <div class="absolute bottom-20 right-10 w-20 h-20 bg-yellow-400 rounded-full opacity-10 floating" style="animation-delay: 1s;"></div>
+    
+    <div class="container mx-auto px-4 sm:px-6 text-center relative z-10">
+      <div class="fade-in">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight">
+          TRAINING <span class="gold-gradient">PROGRAMS</span>
+        </h1>
+      </div>
+      
+      <div class="fade-in" style="animation-delay: 0.5s;">
+        <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+          Choose the perfect program to achieve your fitness goals with personalized guidance
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="py-16 bg-gradient-to-b from-gray-900 to-black">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 sm:mb-16 fade-in">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+          Available <span class="gold-gradient">Programs</span>
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
+          Comprehensive training solutions tailored to your goals and budget
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Option 1 -->
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in">
+          <div class="text-4xl mb-6 text-center">
+            <i class="fas fa-crown gold-gradient"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center gold-gradient">Full-Time Online Training Deluxe</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Personalized workout routine</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Unlimited monthly sessions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>24/7 access for questions and support</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Weekly/monthly progress reports</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free nutrition planning upon request</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Supplementation consultation</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free enrollment in private Facebook group</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free copy of fitness ebook</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Option 2 -->
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in" style="animation-delay: 0.2s;">
+          <div class="text-4xl mb-6 text-center">
+            <i class="fas fa-dumbbell gold-gradient"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center gold-gradient">Budget-Friendly Workout Design Deluxe</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Personalized workout routine</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Full description/video explanations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Unlimited free follow-ups</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free exercise modifications</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Video critique upon request</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free enrollment in private Facebook group</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free copy of fitness ebook</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Option 3 -->
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in" style="animation-delay: 0.4s;">
+          <div class="text-4xl mb-6 text-center">
+            <i class="fas fa-dumbbell gold-gradient"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center gold-gradient">Budget-Friendly Workout Design Basic</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Personalized workout routine</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Full description/video explanations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>1 week of free follow-up questions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Discount on plan upgrades</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Option 4 -->
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in" style="animation-delay: 0.6s;">
+          <div class="text-4xl mb-6 text-center">
+            <i class="fas fa-apple-alt gold-gradient"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center gold-gradient">Deluxe Nutrition Plan</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free evaluation of your current diet</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Creation of personalized eating plan</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free unlimited follow-ups</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free unlimited modifications</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>24/7 access for questions and support</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free TDEE and body fat calculations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Supplementation consultation</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free copy of digital healthy recipe cookbook</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Option 5 -->
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in" style="animation-delay: 0.8s;">
+          <div class="text-4xl mb-6 text-center">
+            <i class="fas fa-apple-alt gold-gradient"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center gold-gradient">Basic Nutrition Plan</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Free evaluation of your current diet</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Creation of personalized eating plan</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>1 week of free follow-up questions</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Discount on plan upgrades</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Option 6 -->
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in" style="animation-delay: 1s;">
+          <div class="text-4xl mb-6 text-center">
+            <i class="fas fa-star gold-gradient"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center gold-gradient">Training & Nutrition Plan Deluxe Combo</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Includes all services from Option 2 & 4</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Special bundle pricing</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Comprehensive fitness and nutrition solution</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Option 7 -->
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in md:col-span-2 lg:col-span-1" style="animation-delay: 1.2s;">
+          <div class="text-4xl mb-6 text-center">
+            <i class="fas fa-comments gold-gradient"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center gold-gradient">Training Consultation</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Exercise and diet questions answered</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Product recommendations</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check text-green-400 mt-1 mr-3"></i>
+              <span>Professional advice</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Policies Section -->
+  <section class="py-16 gradient-bg">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12 sm:mb-16 fade-in">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
+          Program <span class="gold-gradient">Policies</span>
+        </h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in">
+          <h3 class="text-xl font-bold mb-4 gold-gradient">Training Rates Disclaimer</h3>
+          <p class="text-gray-300">
+            Since MKF trains clients from all over the world, our program options are available in several currencies. Please contact MKF (stevetheteacher1@gmail.com) to get an exact price quote.
+          </p>
+        </div>
+        
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in" style="animation-delay: 0.3s;">
+          <h3 class="text-xl font-bold mb-4 gold-gradient">Payment Methods</h3>
+          <p class="text-gray-300 mb-4">
+            Accepted payment methods as of August 2005 are:
+          </p>
+          <ul class="text-gray-300 space-y-2">
+            <li><i class="fas fa-check text-green-400 mr-2"></i>PayPal</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Gcash</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>LINE</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>WeChat</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Zelle</li>
+            <li><i class="fas fa-check text-green-400 mr-2"></i>Bank transfer</li>
+          </ul>
+          <p class="text-gray-300 mt-4">
+            MKF is open to other payment options if required.
+          </p>
+        </div>
+        
+        <div class="bg-gray-800 bg-opacity-50 p-8 rounded-2xl hover-glow fade-in md:col-span-2" style="animation-delay: 0.6s;">
+          <h3 class="text-xl font-bold mb-4 gold-gradient">Additional Policies</h3>
+          <ul class="text-gray-300 space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-percent text-yellow-400 mt-1 mr-3"></i>
+              <span>Multi-month discounts available on all options</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-clock text-yellow-400 mt-1 mr-3"></i>
+              <span>24 hour cancellation required</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12 fade-in">
+        <a href="index.html#contact" class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-8 py-4 rounded-full text-lg font-bold hover-glow inline-block">
+          Contact Me to Get Started
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black py-12 sm:py-16 ">
+    <div class="container mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
+        <!-- About -->
+        <div>
+          <div class="text-xl font-bold gold-gradient mb-2">Steven Hershkowitz</div>
+          <p class="text-gray-400 text-sm">Transform Your Body, Transform Your Life.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-yellow-400">Quick Links</h4>
+          <ul class="text-gray-400 space-y-1 text-sm">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="calculator.html">Calorie Calculator</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Social Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-3 text-yellow-400">Follow Me</h4>
+          <div class="flex justify-center md:justify-start space-x-4">
+            <a href="https://www.facebook.com/steven.hershkowitz.942" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/steve_middlekingdomfitness?igsh=ZWpqNTIyYTRqdTB1" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-yellow-400"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+        &copy; 2025 Steven Hershkowitz. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    window.addEventListener('scroll', function () {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.classList.add('bg-black', 'bg-opacity-90');
+      } else {
+        nav.classList.remove('bg-black', 'bg-opacity-90');
+      }
+    });
+  </script>
+</body>
+</html>
